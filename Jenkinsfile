@@ -12,6 +12,7 @@ node{
     }
 	
 	stage('deploy images'){
+		sh 'cd docker'
         sh 'docker-compose down'       
         sh 'docker-compose up -d'
     }
