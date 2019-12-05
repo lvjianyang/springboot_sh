@@ -5,8 +5,13 @@ node{
     }
 
     stage('build'){
-        docker.image('maven-alpine').inside{
+        docker.image('maven:3-alpine').inside('-v /root/.m2:/root/.m2'){
             sh 'mvn package -B -DskipTests'
         }
+		def testImage = docker.build("test-springboot", "-f docker/Dockerfile") 
+
+		testImage.inside{
+			sh 'make test'
+		}
     }
 }
