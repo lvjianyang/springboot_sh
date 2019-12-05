@@ -13,7 +13,7 @@ node{
 	
 	stage('deploy images'){
 		sh 'pwd'
-		sh 'cd /var/jenkins_home/workspace/springboot_sh/docker'
+		sh 'cd docker'
 		sh 'docker-compose down'       
 		sh 'docker-compose up -d'
     }
