@@ -8,15 +8,13 @@ node{
             sh 'mvn package -B -DskipTests'
         }
 		def testImage = docker.build("test-springboot", "-f docker/Dockerfile .") 
-		testImage.inside {
-			sh 'cd docker'
-			sh 'docker-compose down'       
-			sh 'docker-compose up -d'
-		}
+		
     }
 	
 	stage('deploy images'){
 		
-		sh 'echo finish'
+		sh 'cd /var/jenkins_home/workspace/springboot_sh'
+		sh 'docker-compose down'       
+		sh 'docker-compose up -d'
     }
 }
