@@ -11,11 +11,9 @@ node{
 		
     }
 	
-	stage('deploy images'){
-		sh 'pwd'
-		sh 'cd docker'
-		sh 'docker-compose ps'
-		sh 'docker-compose down'       
-		sh 'docker-compose up -d'
+	stage('deploy images')
+		sh 'docker rm  -f  `docker ps -aq --filter name=springboot` | true'
+		sh 'docker run -d -p 8088:8088 --name springboot test-springboot'
+
     }
 }
