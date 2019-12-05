@@ -14,6 +14,7 @@ node{
 	stage('deploy images'){
 		sh 'pwd'
 		sh 'cd docker'
+		sh 'docker-compose ps'
 		sh 'docker-compose down'       
 		sh 'docker-compose up -d'
     }
