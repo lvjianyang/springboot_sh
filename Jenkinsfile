@@ -9,7 +9,7 @@ node{
         docker.image('maven:3-alpine').inside('-v /root/.m2:/root/.m2'){
             sh 'mvn package -B -DskipTests'
         }
-		def testImage = docker.build("test-springboot", "-f docker/Dockerfile") 
+		def testImage = docker.build("test-springboot", "-f docker/Dockerfile .") 
 
 		docker.image('test-springboot:latest').withRun('-p 8088:8088') {
            sh 'echo finish!'
