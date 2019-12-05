@@ -11,7 +11,7 @@ node{
 		
     }
 	
-	stage('deploy images')
+	stage('deploy images'){
 		sh 'docker rm  -f  `docker ps -aq --filter name=springboot` | true'
 		sh 'docker run -d -p 8088:8088 --name springboot test-springboot'
 
